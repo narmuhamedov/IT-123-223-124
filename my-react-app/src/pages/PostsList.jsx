@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import './PostList.css'
+
 
 export default function PostsList() {
     const [posts, setPosts] = useState([]);
@@ -11,12 +13,12 @@ export default function PostsList() {
     }, []);
 
     return (
-        <div style={{ padding: 20 }}>
-            <h1>Блог</h1>
+        <div>
+            <h1>Посты</h1>
             {posts.map(post => (
-                <div key={post.id} style={{ marginBottom: 15 }}>
+                <div key={post.id} className="post">
                     <h3>{post.title}</h3>
-                    <Link to={`/post/${post.id}`}>Читать подробнее</Link>
+                    <Link className="read-link" to={`/post/${post.id}`}>Читать подробнее</Link>
                 </div>
             ))}
         </div>

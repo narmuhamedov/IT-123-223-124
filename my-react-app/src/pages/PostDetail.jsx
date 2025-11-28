@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import "./PostDetail.css"
 
 export default function PostDetail() {
     const { id } = useParams();
@@ -11,15 +12,13 @@ export default function PostDetail() {
             .then(data => setPost(data));
     }, [id]);
 
-    if (!post) {
-        return <h2>Загрузка .....</h2>;
-    }
+    if (!post)  return <h2>Загрузка .....</h2>;
+    
 
     return (
-        <div style={{ padding: 30 }}>
-            <Link to={"/"}>Назад</Link>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
+        <div>
+            <h1 className='detail-title'>{post.title}</h1>
+            <p className='detail-text'>{post.body}</p>
         </div>
     );
 }
