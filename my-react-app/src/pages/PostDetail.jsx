@@ -1,24 +1,27 @@
-import { useParams, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import "./PostDetail.css"
+import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { PostsContext } from '../App';
+import "./PostDetail.css";
 
 export default function PostDetail() {
-    const { id } = useParams();
-    const [post, setPost] = useState(null);
+  const { id } = useParams();
+  const { posts } = useContext(PostsContext);
 
-    useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-            .then(res => res.json())
-            .then(data => setPost(data));
-    }, [id]);
+  const post = posts.find(p => p.id === Number(id));
 
-    if (!post)  return <h2>Загрузка .....</h2>;
-    
-
+  if (!post) {
     return (
-        <div>
-            <h1 className='detail-title'>{post.title}</h1>
-            <p className='detail-text'>{post.body}</p>
-        </div>
+      <div>
+        <h2>Пост не найден</h2>
+        <p>Возможно, он был удален или еще не загружен</p>
+      </div>
     );
+  }
+
+  return (
+    <div>
+      <h1 className='detail-title'>{post.title}</h1>
+      <p className='detail-text'>{post.body}</p>
+    </div>
+  );
 }
