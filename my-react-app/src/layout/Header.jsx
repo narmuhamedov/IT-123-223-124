@@ -10,6 +10,8 @@ export default function Header(){
                 <Link to='#'>TODO</Link>
                 <Link to='#'>О нас</Link>
                 <Link to="#">Контакты</Link>
+                <Link to = '/register'>Регистрация</Link>
+                <Link to = '/login'>Войти</Link>
             </nav>
         </header>
     )
